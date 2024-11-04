@@ -1,0 +1,49 @@
+
+
+# This program calculates the total ticket price with or with out discounts
+# Define the function to calculate ticket price
+def calculate_ticket_price():
+# constants for the regular ticket prices and the discounts
+# Constants are named in uppercase for readability, though they are technically variables in Python
+    MATINEE_PRICE = 12
+    EVENING_PRICE = 15
+    CHILD_DISCOUNT = 2
+    LOYALTY_DISCOUNT = 0.10
+    BULK_DISCOUNT = 0.10
+
+# Gather input from the user for show type, ticket count, children tickets, and loyalty membership 
+# input() Collects user input as a string
+    showing_type = input("Is the movie a matinee or evening showing? (matinee/evening): ")
+    num_tickets = int(input("How many tickets would you like to purchase?: "))
+    num_child_tickets = int(input("How many of these tickets are for children?: "))
+    loyalty_member = input( "Are you a member of the loyalty program? (yes/no): ").strip()
+
+# Determine the base ticket price based on showing type (matinee or evening)
+# if`, `elif`, `else Conditional statements to check and control the flow based on different conditions
+    if showing_type == "matinee":
+        base_price = MATINEE_PRICE
+    else:
+        base_price = EVENING_PRICE
+
+# Calculate the total price without any discounts
+# Arithmetic operators are symbols used to perform mathematical operations on numerical values
+    total_price = (num_tickets * base_price) - (num_child_tickets * CHILD_DISCOUNT)
+
+# Apply Loyalty discount if applicable
+# if`, `elif`, `else Conditional statements to check and control the flow based on different conditions
+    if loyalty_member == "yes":
+        total_price *= (1 - LOYALTY_DISCOUNT)
+
+# Apply bulk discount if 4 or more tickets are purchased and loyalty discount is not applied
+# if`, `elif`, `else Conditional statements to check and control the flow based on different conditions
+    elif num_tickets >= 4:
+        total_price *= (1 - BULK_DISCOUNT)
+
+# Display the final total price to the user with two decimal places
+  # f-strings (formatted strings) allow for inline expressions and formatted output
+    print(f"Your total price is: ${total_price:.2f}")
+
+# Run the program
+# Call the function to run the program and calculate the ticket price
+calculate_ticket_price()    
+
